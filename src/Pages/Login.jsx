@@ -1,9 +1,38 @@
+import React, { useState } from 'react'
+import { fetchLogin } from '../../services/api'
+import { useNavigate } from 'react-router-dom'
 
+const Login = () => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
-export const Login = () => {
+    const handleLogin = async () => {
+        console.log('loging in...')
+        try {
+            const res = await fetchLogin(username, password)
+            localStorage.setItem('token', res.data.access_token)
+            if (res.status === 200) {
+                navigate('/dashboard')
+            }
+        } catch (error) {
+            if (error.response && error.response.status === 401) {
+                setError('Incorrect username or password')
+            } else {
+                console.error('Error:', error)
+                setError('An unexpected error occurred. Please try again.')
+            }
+        }
+    }
+
+    const handleRegister = () => {
+        navigate('/auth/register')
+    }
+
     return (
         <>
-            <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
+            {<div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-10 w-auto"
@@ -73,8 +102,9 @@ export const Login = () => {
                         </a>
                     </p>
                 </div>
-            </div>
+            </div>}
         </>
     )
 };
 
+export default Login;

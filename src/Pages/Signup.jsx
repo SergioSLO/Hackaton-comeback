@@ -1,6 +1,28 @@
+import React, { useState } from 'react'
+import { fetchRegister } from '../../services/api'
+import { useNavigate } from 'react-router-dom'
 
+const Signup = () => {
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [fullName, setFullName] = useState('')
+    const [error, setError] = useState(null)
+    const navigate = useNavigate()
 
-export const Signup = () => {
+    const handleRegister = async () => {
+        console.log('registering...')
+        try {
+            const res = await fetchRegister({username, password, email, fullName})
+            if (res.status === 200) {
+                navigate('/auth/login')
+            }
+        } catch (error) {
+            console.error('Error:', error)
+            setError('An error occurred during registration. Please try again.')
+        }
+    }
+
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -16,7 +38,7 @@ export const Signup = () => {
                 </div>
 
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" action="#" method="POST" onSubmit={handleRegister}>
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                                 Email address
@@ -29,6 +51,7 @@ export const Signup = () => {
                                     autoComplete="email"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -52,6 +75,7 @@ export const Signup = () => {
                                     autoComplete="current-password"
                                     required
                                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                    onChange={(e) => setPassword(e.target.value)}
                                 />
                             </div>
                         </div>
@@ -78,3 +102,4 @@ export const Signup = () => {
     )
 };
 
+export default Signup;
