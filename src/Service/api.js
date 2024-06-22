@@ -21,7 +21,7 @@ const conver = (data) => {
     )
 }
 
-const header = () => {
+export const header = () => {
     const token = localStorage.getItem('token');
     return {headers: {Authorization : `Bearer ${token}`}};
 }
