@@ -10,7 +10,8 @@ import { Login } from './Pages/Login.jsx'
 import {Navbar} from "./layout/Navbar.jsx";
 import {Signup} from "./Pages/Signup.jsx";
 import {NotFound} from "./Pages/NotFound.jsx";
-import Dashboard from "./Pages/dashboard.jsx";
+import Dashboard from "./Pages/Dashboard.jsx";
+import AdminDashboard from "./Pages/AdminDashboard.jsx";
 
 function App() {
   return (

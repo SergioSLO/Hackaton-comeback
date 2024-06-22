@@ -3,7 +3,7 @@ import { Card } from "antd";
 import { fetchGetProducts } from "../Service/api.js";
 import '../index.css';
 
-export default function Paginacion() {
+export default function Paginacion({botones}) {
     const [products, setProducts] = useState([]);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(9);
@@ -63,10 +63,10 @@ export default function Paginacion() {
                                     className="w-1/4 object-cover"
                                 />
                             }
-                            extra={<button to={"/login"} />}
                         >
                             <p>Rating:{product.stars}</p>
                             <p>Price: ${product.price}</p>
+                            {botones()}
                         </Card>
                     ))}
                 </div>
