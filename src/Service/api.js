@@ -81,7 +81,7 @@ export const fetchGetAllProducts = async (skip, limit) =>{
 // Exportable function for the GET of a product.
 export const fetchGetProduct = async (product_id) =>{
     const config = header();
-    const response = await axios.get(`${url}/api/products/${product_id}`, config)
+    const response = await axios.get(`${url}/item/${product_id}`, config)
     console.log("GetProduct")
     console.log(response)
     return response;

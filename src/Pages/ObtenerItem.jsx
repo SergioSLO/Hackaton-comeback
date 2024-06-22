@@ -5,16 +5,17 @@ import {fetchGetProduct} from "../Service/api.js";
 const ItemDetails = () => {
     const { id } = useParams();
     const [item, setItem] = useState(null);
+    const getItem = async () => {
+        try {
+            const response = await fetchGetProduct(id);
+            setItem(response.data);
+        } catch (error) {
+            console.error('Error al obtener el item', error);
+        }
+    };
 
     useEffect(() => {
-        const getItem = async () => {
-            try {
-                const response = await fetchGetProduct(id);
-                setItem(response.data);
-            } catch (error) {
-                console.error('Error al obtener el item', error);
-            }
-        };
+        console.log(id)
         getItem();
     }, [id]);
 

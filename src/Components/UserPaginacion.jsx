@@ -2,13 +2,17 @@ import { useEffect, useState, useRef } from "react";
 import { Card } from "antd";
 import { fetchGetProducts } from "../Service/api.js";
 import '../index.css';
+import {fetchCartAddItem} from "../Service/cart_api.js";
+import {useNavigate} from "react-router-dom";
 
-export default function Paginacion({botones}) {
+export default function UserPaginacion() {
     const [products, setProducts] = useState([]);
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(9);
     const [loading, setLoading] = useState(false);
     const observerRef = useRef(null);
+    const navigate = useNavigate()
+    const userId = localStorage.getItem('userId')
 
     const fetchProducts = async () => {
         setLoading(true);
@@ -22,7 +26,20 @@ export default function Paginacion({botones}) {
             setLoading(false);
         }
     };
+    const handleAddCart = async (itemId) => {
+        try {
+            const response = await fetchCartAddItem(itemId, userId);
+            console.log('Item eliminado del carrito', response.data);
+            loadCartItems();
+        } catch (error) {
+            console.error('Error al eliminar el item', error);
+        }
+    };
+    const handleGetMore = (id) => {
+        console.log("Obtener más productos");
+        navigate(`/product/${id}`);
 
+    }
     useEffect(() => {
         fetchProducts();
     }, [skip]);
@@ -66,7 +83,15 @@ export default function Paginacion({botones}) {
                         >
                             <p>Rating:{product.stars}</p>
                             <p>Price: ${product.price}</p>
-                            {botones(product.id)}
+                            <div className="flex space-x-4 justify-center">
+                                <button className="py-2 px-4 bg-blue-500 text-white rounded-full hover:bg-blue-700"
+                                        onClick={() => handleGetMore(product.asin)}>Ver más
+                                </button>
+                                <button
+                                    className="py-2 px-4 bg-red-500 text-white rounded-full hover:bg-red-700">Agregar al
+                                    carro
+                                </button>
+                            </div>
                         </Card>
                     ))}
                 </div>
