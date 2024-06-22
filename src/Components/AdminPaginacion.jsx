@@ -1,9 +1,9 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Card } from "antd";
 import { fetchGetProducts } from "../Service/api.js";
 import '../index.css';
-import {fetchCartAddItem} from "../Service/cart_api.js";
-import {useNavigate} from "react-router-dom";
+import { fetchCartAddItem } from "../Service/cart_api.js";
+import { useNavigate } from "react-router-dom";
 
 export default function AdminPaginacion() {
     const [products, setProducts] = useState([]);
@@ -11,8 +11,8 @@ export default function AdminPaginacion() {
     const [limit, setLimit] = useState(9);
     const [loading, setLoading] = useState(false);
     const observerRef = useRef(null);
-    const navigate = useNavigate()
-    const userId = localStorage.getItem('userId')
+    const navigate = useNavigate();
+    const userId = localStorage.getItem('userId');
 
     const fetchProducts = async () => {
         setLoading(true);
@@ -26,20 +26,26 @@ export default function AdminPaginacion() {
             setLoading(false);
         }
     };
+
     const handleAddCart = async (itemId) => {
         try {
             const response = await fetchCartAddItem(itemId, userId);
-            console.log('Item eliminado del carrito', response.data);
+            console.log('Item añadido al carrito', response.data);
             loadCartItems();
         } catch (error) {
-            console.error('Error al eliminar el item', error);
+            console.error('Error al añadir el item', error);
         }
     };
-    const handleGetMore = (id) => {
-        console.log("Obtener más productos");
-        navigate(`/productos/${id}`);
 
-    }
+    const handleEditProduct = (id) => {
+        navigate(`/product/edit/${id}`);
+    };
+
+    const handleDeleteProduct = (id) => {
+        // Aquí puedes añadir la lógica para eliminar el producto
+        console.log('Eliminar producto con id:', id);
+    };
+
     useEffect(() => {
         fetchProducts();
     }, [skip]);
@@ -69,7 +75,7 @@ export default function AdminPaginacion() {
                 <h2 className="sr-only">Products</h2>
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 xl:gap-x-8">
-                    {products.map((product,index) => (
+                    {products.map((product, index) => (
                         <Card
                             key={index}
                             title={product.title}
@@ -81,14 +87,17 @@ export default function AdminPaginacion() {
                                 />
                             }
                         >
-                            <p>Rating:{product.stars}</p>
+                            <p>Rating: {product.stars}</p>
                             <p>Price: ${product.price}</p>
                             <div className="flex space-x-4 justify-center">
                                 <p>{product.asin}</p>
-                                <button className="py-2 px-4 bg-blue-500 text-white rounded-full hover:bg-blue-700">Editar
+                                <button
+                                    className="py-2 px-4 bg-blue-500 text-white rounded-full hover:bg-blue-700"
+                                    onClick={() => handleEditProduct(product.asin)}>Editar
                                 </button>
                                 <button
-                                    className="py-2 px-4 bg-red-500 text-white rounded-full hover:bg-red-700">Eliminar
+                                    className="py-2 px-4 bg-red-500 text-white rounded-full hover:bg-red-700"
+                                    onClick={() => handleDeleteProduct(product.asin)}>Eliminar
                                 </button>
                             </div>
                         </Card>

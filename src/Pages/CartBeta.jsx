@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { fetchCart, fetchCartAddItem, fetchCartDeleteItem, fetchCartBuy } from '../api';
+import { fetchCart, fetchCartAddItem, fetchCartDeleteItem, fetchCartBuy } from '../Service/cart_api.js';
 
 /**
  * Cart Component

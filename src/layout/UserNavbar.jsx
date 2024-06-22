@@ -1,5 +1,8 @@
 import {Button} from "../Components/button.jsx";
 import {useNavigate} from "react-router-dom";
+import { FaShoppingCart } from 'react-icons/fa'; // Ejemplo de icono de carrito de compras de Font Awesome
+
+
 
 
 export const UserNavbar = () => {
@@ -9,6 +12,10 @@ export const UserNavbar = () => {
         localStorage.clear();
         nav('/auth/login')
     }
+    function aaaa(){
+        nav('/cartbeta');
+    }
+
     return (
         <div className="bg-gray-500 columns-2">
 
@@ -22,6 +29,7 @@ export const UserNavbar = () => {
                     <Button message="Home" to="/home" textcolor="text-white"/>
                     <Button message="Ir al carrito" to="/cart" textcolor="text-white"/>
                     <button onClick={handleLogOut}>Log Out</button>
+                    <FaShoppingCart onClick={aaaa} className="text-white" size={24}/>
                 </div>
             </div>
         </div>

@@ -24,7 +24,7 @@ const ItemDetails = () => {
     }
 
     return (
-        <div>
+        <div className={"text-black"}>
             <h1>{item.title}</h1>
             <img src={item.imgUrl} alt={item.title} />
             <p>Precio: ${item.price}</p>

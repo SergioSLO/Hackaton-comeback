@@ -87,20 +87,20 @@ export const fetchGetProduct = async (product_id) =>{
     return response;
 }
 
-// Exportable function for the placement (PUT) of a product.
-export const fetchPutProduct = async (product_id, body)=>{
-    const config = header();
-    const response = await axios.put(`${url}/api/products/${product_id}`, body, config)
-    console.log("PutProduct")
-    console.log(response)
-    return response;
-}
 
-// Exportable function for the deletion of products.
-export const fetchDeleteProduct = async (product_id) =>{
+
+export const fetchPutProduct = async (product_id, body) => {
     const config = header();
-    const response = await axios.delete(`${url}/api/products/${product_id}`, config)
-    console.log("DeleteProduct")
-    console.log(response)
+    const response = await axios.put(`${url}/item/${product_id}`, body, config);
+    console.log("PutProduct");
+    console.log(response);
     return response;
-}
+};
+
+export const fetchDeleteProduct = async (product_id) => {
+    const config = header();
+    const response = await axios.delete(`${url}/item/${product_id}`, config);
+    console.log("DeleteProduct");
+    console.log(response);
+    return response;
+};
