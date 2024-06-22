@@ -6,8 +6,6 @@ import {
     Route,
     Navigate } from 'react-router-dom'
 import { Login } from './Pages/Login.jsx'
-
-import {Navbar} from "./layout/Navbar.jsx";
 import {Signup} from "./Pages/Signup.jsx";
 import {NotFound} from "./Pages/NotFound.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
@@ -16,7 +14,6 @@ import CrearItem from "./Pages/CrearItem.jsx";
 import ItemDetails from "./Pages/ObtenerItem.jsx";
 import CartBeta from "./Pages/CartBeta.jsx";
 import EditarItem from "./Pages/EditarItem.jsx";
-import CartBeta from "./Pages/CartBeta.jsx";
 
 function App() {
   return (
