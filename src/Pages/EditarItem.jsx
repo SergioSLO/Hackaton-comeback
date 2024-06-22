@@ -20,6 +20,7 @@ export default function EditarItem() {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
+                setProduct({...product,itemId:id});
                 const response = await fetchGetProduct(id);
                 setProduct(response.data);
                 setLoading(false);

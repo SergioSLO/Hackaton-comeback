@@ -91,7 +91,18 @@ export const fetchGetProduct = async (product_id) =>{
 
 export const fetchPutProduct = async (product_id, body) => {
     const config = header();
-    const response = await axios.put(`${url}/item/${product_id}`, body, config);
+    console.log(body);
+    const data = {
+        itemId:body.asin,
+        boughtInLastMonth: body.boughtInLastMonth,
+        imgUrl: body.imgUrl,
+        isBestSeller: body.isBestSeller,
+        price: body.price,
+        stars: body.stars,
+        title: body.title
+    }
+    console.log(data)
+    const response = await axios.put(`${url}/item`, data, config);
     console.log("PutProduct");
     console.log(response);
     return response;
