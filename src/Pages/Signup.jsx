@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { fetchRegister } from "../Service/apiLoginRegister.js"
 import { useNavigate } from 'react-router-dom';
+import {Navbar} from "../layout/Navbar.jsx";
 
 
 export const Signup = () => {
@@ -31,7 +32,7 @@ export const Signup = () => {
 
     return (
         <>
-
+            <Navbar/>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { fetchLogIn } from "../Service/apiLoginRegister.js";
+import {Navbar} from "../layout/Navbar.jsx";
 
 export const Login = () => {
     const [formData, setFormData] = useState({
@@ -26,6 +27,7 @@ export const Login = () => {
 
     return (
         <>
+            <Navbar/>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
