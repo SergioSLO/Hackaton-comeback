@@ -1,6 +1,6 @@
 // src/Pages/Cart.jsx
 import React, { useState, useEffect } from 'react';
-import { fetchCart, fetchCartAddItem, fetchCartDeleteItem, fetchCartBuy } from '../api';
+import {fetchCart, fetchCartAddItem, fetchCartBuy, fetchCartDeleteItem} from "../Service/cart_api.js";
 
 const Cart = () => {
     const [cartItems, setCartItems] = useState([]);

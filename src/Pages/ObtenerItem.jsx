@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchGetProduct } from '../api';
+import {fetchGetProduct} from "../Service/api.js";
 
 const ItemDetails = () => {
     const { id } = useParams();
