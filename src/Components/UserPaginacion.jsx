@@ -28,11 +28,11 @@ export default function UserPaginacion() {
     };
     const handleAddCart = async (itemId) => {
         try {
+            console.log(itemId, userId);
             const response = await fetchCartAddItem(itemId, userId);
-            console.log('Item eliminado del carrito', response.data);
-            loadCartItems();
+            console.log('Item añadido', response.data);
         } catch (error) {
-            console.error('Error al eliminar el item', error);
+            console.error('Error al añadir al carro', error);
         }
     };
     const handleGetMore = (id) => {
@@ -88,7 +88,8 @@ export default function UserPaginacion() {
                                         onClick={() => handleGetMore(product.asin)}>Ver más
                                 </button>
                                 <button
-                                    className="py-2 px-4 bg-red-500 text-white rounded-full hover:bg-red-700">Agregar al
+                                    className="py-2 px-4 bg-red-500 text-white rounded-full hover:bg-red-700"
+                                onClick={() => handleAddCart(product.asin)}>Agregar al
                                     carro
                                 </button>
                             </div>

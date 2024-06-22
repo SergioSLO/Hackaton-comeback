@@ -1,10 +1,10 @@
 // Let us begin
 
 import axios from "axios";
-import {url} from "./api.js";
 import {header} from "./api.js";
 
 // Cart operations = = = = = = = = = =
+ const url = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com';
 
 // POST /buy
 export const fetchCartBuy = async (userId) => { // This takes only the userID
@@ -18,10 +18,12 @@ export const fetchCartBuy = async (userId) => { // This takes only the userID
 
 // POST /cart
 export const fetchCartAddItem = async (itemId, userId) => { // This takes itemID and userID
-    const data = {itemId, userId}; // Should be formated
+    const data = { itemId, userId }; // Should be formated
+    const token = localStorage.getItem('token'); // Acquire token
+    const config = {headers: {Authorization : `Bearer ${token}`}};
     console.log("Adding item to cart . . .")
-    const response = await axios.post(`${url}/cart`, data, header());
-    console.log(`Item data: ${response}`); // Check data
+    const response = await axios.put(`${url}/cart`, data, config);
+    console.log(`Item data: ${response}`);
     return response;
 }
 
@@ -40,6 +42,6 @@ export const fetchCart = async (userId)=> {
     console.log("Fetching cart contents . . .")
     console.log(`TARGET: [${userId}]`)
     const response = await axios.get(`${url}/${route}`, header());
-    console.log(`Item data: ${response}`); // Check data
+    console.log(response); // Check data
     return response;
 }

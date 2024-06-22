@@ -28,7 +28,9 @@ export const UserNavbar = () => {
                 <div>
                     <Button message="Home" to="/home" textcolor="text-white"/>
                     <Button message="Ir al carrito" to="/cart" textcolor="text-white"/>
-                    <button onClick={handleLogOut}>Log Out</button>
+                    <button className="py-2 px-4 text-c1 bg-c3 mx-6  rounded-full cursor-pointer"
+                            onClick={handleLogOut}>Log Out
+                    </button>
                     <FaShoppingCart onClick={aaaa} className="text-white" size={24}/>
                 </div>
             </div>

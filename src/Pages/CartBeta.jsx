@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { fetchCart, fetchCartAddItem, fetchCartDeleteItem, fetchCartBuy } from '../Service/cart_api.js';
+import {fetchCart, fetchCartAddItem, fetchCartBuy, fetchCartDeleteItem} from "../Service/cart_api.js";
 
 /**
  * Cart Component
@@ -29,7 +29,9 @@ const Cart = () => {
         setError(''); // Clear any existing errors
         try {
             const response = await fetchCart(userId); // Fetch cart items
-            setCartItems(response.data); // Update the cart items state
+            const productttt = response.data.products;
+            console.log('Cart items loaded', productttt); // Log cart items to console
+            setCartItems(productttt); // Update the cart items state
         } catch (error) {
             console.error('Error loading cart', error); // Log error to console
             setError('Error loading cart'); // Set error message
@@ -107,16 +109,20 @@ const Cart = () => {
     if (!cartItems.length) {
         return <p>The cart is empty.</p>;
     }
-
+    const deleteItem = (indexToRemove) => {
+        setCartItems((prevItems) =>
+            prevItems.filter((_, index) => index !== indexToRemove)
+        );
+    };
     // Render the cart items and actions
     return (
         <div>
             <h1>Shopping Cart</h1>
             <ul>
-                {cartItems.map((item) => (
-                    <li key={item.itemId}>
-                        {item.title} - ${item.price} - Quantity: {item.qty}
-                        <button onClick={() => handleDeleteItem(item.itemId)}>Delete</button>
+                {cartItems.map((item, index) => (
+                    <li key={index}>
+                        {item.item_id} - Quantity: {item.qty}
+                        <button onClick={() => deleteItem(index)}>Delete</button>
                     </li>
                 ))}
             </ul>

@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import {fetchCreateProduct} from "../Service/api.js";
+import {useNavigate} from "react-router-dom";
 
 
 const CrearItem = () => {
+    const navigate = useNavigate();
     const [formData, setFormData] = useState({
         boughtInLastMonth: 0,
         imgUrl: '',
@@ -25,6 +27,8 @@ const CrearItem = () => {
         try {
             const response = await fetchCreateProduct(formData);
             console.log('Item created successfully', response.data);
+            alert('Producto creado exitosamente');
+            navigate("/home")
         } catch (error) {
             console.error('Error creating item', error);
         }

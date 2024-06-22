@@ -3,7 +3,7 @@
 // Imports, exports and constants
 
 import axios from "axios";
-export const url = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com';
+export const url = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com/';
 
 // Function for the fetching of a GET product operation
 export const fetchGetProducts = async (lastKey, limit) => {
