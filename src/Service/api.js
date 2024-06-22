@@ -63,7 +63,7 @@ export const fetchRegister = async (body) => {
 // Exportable function for fetching the creation of products.
 export const fetchCreateProduct = async (body) => {
     const config = header();
-    const response = await axios.post(`${url}/api/products`, body, config)
+    const response = await axios.post(`${url}/item`, body, config)
     console.log("Crear Producto")
     console.log(response)
     return response;

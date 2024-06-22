@@ -23,6 +23,7 @@ export const Login = () => {
             // Manejar la respuesta de inicio de sesión aquí
             if (response.status === 200) {
                 navigate('/home')
+                localStorage.setItem("userId",formData.username)
             }
         } catch (error) {
             setErrorMessage("Error al iniciar sesión. Por favor, verifica tus credenciales.");
