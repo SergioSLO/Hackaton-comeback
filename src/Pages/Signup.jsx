@@ -22,7 +22,9 @@ export const Signup = () => {
         event.preventDefault();
         try {
             const response = await fetchRegister(formData);
-            navigate('/auth/login');
+            if (response.status === 201){
+                navigate('/auth/login');
+            }
             // Manejar la respuesta de registro aquí
         } catch (error) {
             setErrorMessage("Error al Registrar");
