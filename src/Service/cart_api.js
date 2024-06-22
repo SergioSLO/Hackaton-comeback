@@ -29,18 +29,17 @@ export const fetchCartAddItem = async (itemID, userID) => { // This takes itemID
 export const fetchCartDeleteItem = async (itemID, userID) => { // This takes itemID and userID
     const data = {itemID, userID}; // Should be formated
     console.log("Deleting item from cart . . .")
-    const response = await axios.delete(`${url}/cart`, data, header());
+    const response = await axios.delete(`${url}/cart`, {data, ...header()});
     console.log(`Item data for [${data}]: ${response}`); // Check data
     return response;
 }
 
 // GET /cart/{userId}
 export const fetchCart = async (userId)=> {
-    const data = {userId};
     const route = `cart/${userId}`; // Route denotation
     console.log("Fetching cart contents . . .")
     console.log(`TARGET: [${userId}]`)
-    const response = await axios.get(`${url}/${route}`,data , header());
+    const response = await axios.get(`${url}/${route}`, header());
     console.log(`Item data: ${response}`); // Check data
     return response;
 }
