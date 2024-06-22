@@ -1,21 +1,16 @@
 // Let us begin
 
 import axios from "axios";
-const url = 'https://dummyjson.com';
+//prueba
+const url = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com';
 
-//este tiene s ProductSSSSS
-export const fetchGetProducts = async (skip, limit) => {
-    const config = {
-        params:{
-            limit,
-            skip,
-        }
-    }
-    const response = await axios.get(`${url}/products`, config)
+export const fetchGetProducts = async (lastKey, limit) => {
+    const response = await axios.get(`${url}/items?limit=${limit}&lastKey=${lastKey}`)
     console.log("FetchResult")
     console.log(response)
     return response;
 }
+
 //real
 const conver = (data) => {
     const precio = Number(data.price)
