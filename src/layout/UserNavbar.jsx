@@ -1,8 +1,14 @@
 import {Button} from "../Components/button.jsx";
+import {useNavigate} from "react-router-dom";
 
 
 export const UserNavbar = () => {
+    const nav = useNavigate();
 
+    const handleLogOut = ()=>{
+        localStorage.clear();
+        nav('/auth/login')
+    }
     return (
         <div className="bg-gray-500 columns-2">
 
@@ -15,8 +21,9 @@ export const UserNavbar = () => {
                 <div>
                     <Button message="Home" to="/home" textcolor="text-white"/>
                     <Button message="Ir al carrito" to="/cart" textcolor="text-white"/>
+                    <button onClick={handleLogOut}>Log Out</button>
                 </div>
             </div>
         </div>
-)
+    )
 };
