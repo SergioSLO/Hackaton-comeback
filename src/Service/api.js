@@ -1,9 +1,21 @@
 import axios from "axios";
+//prueba
+const url = 'https://dummyjson.com';
 
-const url = "http://google.com"
-
-
-
+//este tiene s ProductSSSSS
+export const fetchGetProducts = async (skip, limit) => {
+    const config = {
+        params:{
+            limit,
+            skip,
+        }
+    }
+    const response = await axios.get(`${url}/products`, config)
+    console.log("FetchResult")
+    console.log(response)
+    return response;
+}
+//real
 const conver = (data) => {
     const precio = Number(data.price)
     const cantidad = Number(data.quantity)
