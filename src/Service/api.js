@@ -1,6 +1,6 @@
 import axios from "axios";
 //prueba
-const url = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com';
+export const url = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com';
 
 export const fetchGetProducts = async (lastKey, limit) => {
     const response = await axios.get(`${url}/items?limit=${limit}&lastKey=${lastKey}`)

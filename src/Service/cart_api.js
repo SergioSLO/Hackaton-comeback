@@ -1,8 +1,7 @@
 // Let us begin
 
 import axios from "axios";
-
-const BACKEND_URL = 'http://3.129.207.164'
+import {url} from "./api.js";
 
 // Cart operations = = = = = = = = = =
 
@@ -10,7 +9,7 @@ const BACKEND_URL = 'http://3.129.207.164'
 export const fetchCartBuy = async (userId) => { // This takes only the userID
     const data = {userId}; // Should be formated
     console.log("Executing buy operation . . .")
-    const response = await axios.post(`${BACKEND_URL}/buy`, data);
+    const response = await axios.post(`${url}/buy`, data);
     console.log(`Operation line for [${data}]: ${response.status}`); // Point
     console.log(response); // Data
     return response;
@@ -20,7 +19,7 @@ export const fetchCartBuy = async (userId) => { // This takes only the userID
 export const fetchCartAddItem = async (itemID, userID) => { // This takes itemID and userID
     const data = {itemID, userID}; // Should be formated
     console.log("Adding item to cart . . .")
-    const response = await axios.post(`${BACKEND_URL}/cart`, data);
+    const response = await axios.post(`${url}/cart`, data);
     console.log(`Item data: ${response}`); // Check data
     return response;
 }
@@ -29,7 +28,7 @@ export const fetchCartAddItem = async (itemID, userID) => { // This takes itemID
 export const fetchCartDeleteItem = async (itemID, userID) => { // This takes itemID and userID
     const data = {itemID, userID}; // Should be formated
     console.log("Deleting item from cart . . .")
-    const response = await axios.delete(`${BACKEND_URL}/cart`);
+    const response = await axios.delete(`${url}/cart`);
     console.log(`Item data for [${data}]: ${response}`); // Check data
     return response;
 }
@@ -39,7 +38,7 @@ export const fetchCart = async (userId)=> {
     const route = `cart/${userId}`; // Route denotation
     console.log("Fetching cart contents . . .")
     console.log(`TARGET: [${userId}]`)
-    const response = await axios.get(`${BACKEND_URL}/${route}`);
+    const response = await axios.get(`${url}/${route}`);
     console.log(`Item data: ${response}`); // Check data
     return response;
 }
