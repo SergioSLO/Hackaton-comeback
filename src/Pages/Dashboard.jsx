@@ -12,7 +12,13 @@ export default function Dashboard(){
         )
     }
     return (
+
         <>
+            <div className="flex justify-center mt-8">
+                <button className="py-2 px-4 bg-blue-500 text-white rounded-full hover:bg-blue-700">
+                    Ir al carrito
+                </button>
+            </div>
             <Paginacion botones={handleBotones}></Paginacion>
         </>
     )
