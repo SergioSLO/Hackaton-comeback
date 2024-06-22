@@ -11,13 +11,11 @@ import {Navbar} from "./layout/Navbar.jsx";
 import {Signup} from "./Pages/Signup.jsx";
 import {NotFound} from "./Pages/NotFound.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
-import AdminDashboard from "./Pages/AdminDashboard.jsx";
 
 function App() {
   return (
     <>
         <Router>
-            <Navbar/>
             <Routes>
                 <Route path="/" element={<Navigate to="/auth/login"/>} />
                 <Route path="/auth/login" element={<Login/>} />

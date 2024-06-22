@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { fetchLogIn } from "../Service/apiLoginRegister.js";
+import { useNavigate } from "react-router-dom";
+import {Navbar} from "../layout/Navbar.jsx";
 
 export const Login = () => {
     const [formData, setFormData] = useState({
@@ -7,6 +9,7 @@ export const Login = () => {
         password: ""
     });
     const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate();
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -18,6 +21,9 @@ export const Login = () => {
         try {
             const response = await fetchLogIn(formData);
             // Manejar la respuesta de inicio de sesión aquí
+            if (response.status === 200) {
+                navigate('/home')
+            }
         } catch (error) {
             setErrorMessage("Error al iniciar sesión. Por favor, verifica tus credenciales.");
             console.error("Error en el inicio de sesión:", error);
@@ -26,6 +32,7 @@ export const Login = () => {
 
     return (
         <>
+            <Navbar/>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
