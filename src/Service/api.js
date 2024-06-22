@@ -1,5 +1,3 @@
-// Let us begin
-
 import axios from "axios";
 //prueba
 const url = 'https://cepnq6rjbk.execute-api.us-east-1.amazonaws.com';
