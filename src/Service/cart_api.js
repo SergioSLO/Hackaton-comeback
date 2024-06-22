@@ -17,8 +17,8 @@ export const fetchCartBuy = async (userId) => { // This takes only the userID
 }
 
 // POST /cart
-export const fetchCartAddItem = async (itemID, userID) => { // This takes itemID and userID
-    const data = {itemID, userID}; // Should be formated
+export const fetchCartAddItem = async (itemId, userId) => { // This takes itemID and userID
+    const data = {itemId, userId}; // Should be formated
     console.log("Adding item to cart . . .")
     const response = await axios.post(`${url}/cart`, data, header());
     console.log(`Item data: ${response}`); // Check data
@@ -26,8 +26,8 @@ export const fetchCartAddItem = async (itemID, userID) => { // This takes itemID
 }
 
 // DELETE /cart
-export const fetchCartDeleteItem = async (itemID, userID) => { // This takes itemID and userID
-    const data = {itemID, userID}; // Should be formated
+export const fetchCartDeleteItem = async (itemId, userId) => { // This takes itemId and userID
+    const data = {itemID: itemId, userId}; // Should be formated
     console.log("Deleting item from cart . . .")
     const response = await axios.delete(`${url}/cart`, {data, ...header()});
     console.log(`Item data for [${data}]: ${response}`); // Check data
