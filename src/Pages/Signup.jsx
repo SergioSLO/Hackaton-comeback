@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { fetchRegister } from "../Service/apiLoginRegister.js";
+import { fetchRegister } from "../Service/apiLoginRegister.js"
+import { useNavigate } from 'react-router-dom';
+
 
 export const Signup = () => {
     const [formData, setFormData] = useState({
@@ -8,6 +10,7 @@ export const Signup = () => {
         role: "Cliente"
     });
     const [errorMessage, setErrorMessage] = useState("");
+    const navigate = useNavigate();
 
     function handleInputChange(event) {
         const { name, value } = event.target;
@@ -18,6 +21,7 @@ export const Signup = () => {
         event.preventDefault();
         try {
             const response = await fetchRegister(formData);
+            navigate('/auth/login');
             // Manejar la respuesta de registro aquí
         } catch (error) {
             setErrorMessage("Error al Registrar");
