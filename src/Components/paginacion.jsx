@@ -66,7 +66,7 @@ export default function Paginacion({botones}) {
                         >
                             <p>Rating:{product.stars}</p>
                             <p>Price: ${product.price}</p>
-                            {botones()}
+                            {botones(product.id)}
                         </Card>
                     ))}
                 </div>

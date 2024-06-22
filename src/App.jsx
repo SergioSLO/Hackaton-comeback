@@ -11,6 +11,9 @@ import {Navbar} from "./layout/Navbar.jsx";
 import {Signup} from "./Pages/Signup.jsx";
 import {NotFound} from "./Pages/NotFound.jsx";
 import Dashboard from "./Pages/Dashboard.jsx";
+import Cart2 from "./Pages/Cart2.jsx";
+import CrearItem from "./Pages/CrearItem.jsx";
+import ItemDetails from "./Pages/ObtenerItem.jsx";
 
 function App() {
   return (
@@ -21,6 +24,9 @@ function App() {
                 <Route path="/auth/login" element={<Login/>} />
                 <Route path="/auth/signup" element={<Signup/>} />
                 <Route path="/home" element={<Dashboard/>} />
+                <Route path="/cart" element={<Cart2/>} />
+                <Route path="/create" element={<CrearItem/>} />
+                <Route path="/product/:id" element={<ItemDetails />} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </Router>

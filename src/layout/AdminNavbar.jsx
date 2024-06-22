@@ -13,7 +13,7 @@ export const AdminNavbar = () => {
         <div className="bg-gray-800 p-4">
             <div>
                 <Button message="Home" to="/home" textcolor="text-white"/>
-                <Button message="Añadir un producto" to="/cart" textcolor="text-white"/>
+                <Button message="Añadir un producto" to="/create" textcolor="text-white"/>
             </div>
         </div>
     </div>
