@@ -1,6 +1,17 @@
+import {useState} from "react";
 
 
 export const Signup = () => {
+
+    const [formData, setFormData] = useState({
+        email: "",
+        password:""
+    })
+
+    function handleInputChange(a,b){
+        setFormData({...formData, [a]:b});
+    }
+
     return (
         <>
             <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
@@ -22,7 +33,7 @@ export const Signup = () => {
                                 Email address
                             </label>
                             <div className="mt-2">
-                                <input
+                                <input  onChange={event => handleInputChange(event.target.name, event.target.value)}
                                     id="email"
                                     name="email"
                                     type="email"
@@ -45,7 +56,7 @@ export const Signup = () => {
                                 </div>
                             </div>
                             <div className="mt-2">
-                                <input
+                                <input  onChange={event => handleInputChange(event.target.name, event.target.value)}
                                     id="password"
                                     name="password"
                                     type="password"
