@@ -1,16 +1,28 @@
-import {useState} from "react";
-
+import { useState } from "react";
+import { fetchLogIn } from "../Service/apiLoginRegister.js";
 
 export const Login = () => {
-
     const [formData, setFormData] = useState({
-        email: "",
-        password:""
-    })
+        username: "",
+        password: ""
+    });
+    const [errorMessage, setErrorMessage] = useState("");
 
-    function handleInputChange(a,b){
-        setFormData({...formData, [a]:b});
+    function handleInputChange(event) {
+        const { name, value } = event.target;
+        setFormData({ ...formData, [name]: value });
     }
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await fetchLogIn(formData);
+            // Manejar la respuesta de inicio de sesión aquí
+        } catch (error) {
+            setErrorMessage("Error al iniciar sesión. Por favor, verifica tus credenciales.");
+            console.error("Error en el inicio de sesión:", error);
+        }
+    };
 
     return (
         <>
@@ -18,7 +30,7 @@ export const Login = () => {
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <img
                         className="mx-auto h-10 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                        src="https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg"
                         alt="Your Company"
                     />
                     <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -26,21 +38,21 @@ export const Login = () => {
                     </h2>
                 </div>
 
-
                 <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                    <form className="space-y-6" action="#" method="POST">
+                    <form className="space-y-6" onSubmit={handleSubmit}>
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                                Email address
+                            <label htmlFor="username" className="block text-sm font-medium leading-6 text-gray-900">
+                                Username
                             </label>
                             <div className="mt-2">
-                                <input onChange={event => handleInputChange(event.target.name, event.target.value)}
-                                       id="email"
-                                       name="email"
-                                       type="email"
-                                       autoComplete="email"
-                                       required
-                                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input
+                                    onChange={handleInputChange}
+                                    id="username"
+                                    name="username"
+                                    type="text"
+                                    autoComplete="username"
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -57,13 +69,14 @@ export const Login = () => {
                                 </div>
                             </div>
                             <div className="mt-2">
-                                <input onChange={event => handleInputChange(event.target.name, event.target.value)}
-                                       id="password"
-                                       name="password"
-                                       type="password"
-                                       autoComplete="current-password"
-                                       required
-                                       className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                <input
+                                    onChange={handleInputChange}
+                                    id="password"
+                                    name="password"
+                                    type="password"
+                                    autoComplete="current-password"
+                                    required
+                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 bg-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                 />
                             </div>
                         </div>
@@ -78,6 +91,12 @@ export const Login = () => {
                         </div>
                     </form>
 
+                    {errorMessage && (
+                        <p className="mt-4 text-center text-sm text-red-500">
+                            {errorMessage}
+                        </p>
+                    )}
+
                     <p className="mt-10 text-center text-sm text-gray-500">
                         Not a member?{' '}
                         <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
@@ -86,9 +105,6 @@ export const Login = () => {
                     </p>
                 </div>
             </div>
-
-
         </>
-    )
+    );
 };
-
