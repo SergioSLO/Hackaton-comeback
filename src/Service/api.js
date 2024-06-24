@@ -80,8 +80,7 @@ export const fetchGetAllProducts = async (skip, limit) =>{
 
 // Exportable function for the GET of a product.
 export const fetchGetProduct = async (product_id) =>{
-    const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlNlcmdpb0xlIiwicm9sZSI6IkNsaWVudGUifQ.KNHiOfmmoRRTcuH5BD-wMgQGvG7u97Z9L-SIeKEl5Vg"
-    const config = {headers: {Authorization : `Bearer ${token}`}};
+    const config = header();
     const response = await axios.get(`${url}/item/${product_id}`, config)
     console.log("GetProduct")
     console.log(response)
